@@ -1,7 +1,7 @@
 About
 -----
 
-This is a complete example of two-ways realtime dataflow architecture (between frontend and backend) based on Rails, Backbone and Server-Site Events.
+This is a complete example of two-ways realtime dataflow architecture (between frontend and backend) based on Rails, Backbone and Server-Side Events.
 
 Why?
 ----
