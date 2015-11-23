@@ -1,0 +1,15 @@
+<div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+    <div class="username">
+        <span class="bold"><a href="/users/<%= comment.user_id %>"><%= comment.user.username %></a></span> say:<span class="bold"></span>
+    </div>
+    <div class="info text-muted">
+        <span class="wall-comment-body"><input class='<% if (comment.current_user_can_edit) { %>wall-comment-input-editable<% } %>' type='text' value='<%- comment.body %>' readonly='1' data-id="<%-comment.id%>" data-commentable-id="<%-comment.commentable_id%>" data-commentable-type="<%-comment.commentable_type%>"></span>
+    </div>
+    <div class="info-details">
+        <ul class="list-unstyled list-inline">
+            <li><a href="#" class="text-muted"><%= moment(comment.created_at).format('DD.MM.YYYY HH:mm') %></a></li>
+        </ul>
+
+    </div>
+</div>
+<div class="clearfix"></div>

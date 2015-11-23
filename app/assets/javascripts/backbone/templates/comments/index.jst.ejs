@@ -1,0 +1,11 @@
+<div class="comments"></div>
+
+<% if (commentable.allow_post) { %>
+<div>
+    <form>
+        <div class="controls">
+            <input type="text" name="body" placeholder="Type comment here" class="form-control add-comment" data-commentable-id="<%- commentable.id %>" data-commentable-type="<%- commentable.type %>">
+        </div>
+    </form>
+</div>
+<% } %>

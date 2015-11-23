@@ -1,0 +1,41 @@
+
+<div id="comments-list"></div>
+
+<!-- BACKBONE RADIO -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.wreqr/1.3.5/backbone.wreqr.js"></script>
+
+<script type="text/javascript">
+
+    var globalCh = Backbone.Wreqr.radio.channel('appChannel');
+
+    jQuery(document).ready(function() {
+
+        <% unless ENV['REDIS_CHANNEL_NAME'].nil? %>
+        var source = new EventSource("/streams");
+        source.onmessage = function(e){
+            // you can debug it here
+        };
+        source.addEventListener('global.comment.update.success', function(e) {
+            globalCh.vent.trigger(e.type, e.data);
+        });
+        <% end %>
+
+        window.router = new Meetplay.Routers.CommentsRouter({
+            comments: <%= @model.comments.to_json(:user => current_user).html_safe %>,
+            commentable: {
+                id: '<%=@model.id%>',
+                type: '<%=h @model.class.to_s %>',
+                allow_post: true
+            },
+            current_user: {
+                <% if !current_user.nil? %>
+                id:        '<%= h current_user.id.to_s %>',
+                username:  '<%= h current_user.username %>',
+                friend_ids: <%= current_user.friends.map{|friend| friend.id} %>
+                <% end %>
+            }
+        });
+
+
+    });
+</script>
