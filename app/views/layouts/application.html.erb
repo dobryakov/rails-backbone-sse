@@ -20,7 +20,7 @@
         });
         <% end %>
 
-        window.router = new Meetplay.Routers.CommentsRouter({
+        window.router = new Project.Routers.CommentsRouter({
             comments: <%= @model.comments.to_json(:user => current_user).html_safe %>,
             commentable: {
                 id: '<%=@model.id%>',

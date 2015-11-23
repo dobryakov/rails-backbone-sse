@@ -1,5 +1,5 @@
 
-class MeetplayEvent
+class ProjectEvent
 
   def self.publish(event_name, payload = {})
 

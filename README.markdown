@@ -26,7 +26,14 @@ Some setup:
     gem 'redis' # you need a Redis server, of course
     gem 'puma'  # you need actually use it as webserver
 
-The key idea:
+And you need to setup an environment variable:
+
+    ENV['REDIS_CHANNEL_NAME']
+
+I suggest you to use 'dotenv-rails' gem.
+
+The key idea
+------------
 
 When you interact with webpage, you change the data in Backbone model. When model changed - Backbone sends it to backend and receives an answer. It is a very typical way, but let's ignore this answer and do more.
 
