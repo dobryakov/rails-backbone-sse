@@ -49,12 +49,12 @@ Benefits
 
 1. It's easy.
 2. It is an ordinary HTTP (no 'switching protocols'), and it should reconnecting automagically (as described in the docs).
-3. You have as many instances of StreamController as many people are on your website now (and not more).
-4. Instances will be closed automatically when user has left your website.
+3. You have as many instances of StreamController as many people are interacting with your website now (and not more).
+4. Each instance will be closed automatically when user has left your website.
 5. In the StreamController you have full control on the user session ('current_user') through standart tools, without any additional work.
 
 Caveats
 -------
 
-When you are using Global ID, you are actually dealing with Rails cache, not with real 'objects loaded from database right now'. If you will use this technique for frequently updated content, uou can get a little out-of-date objects. It is not a lack of the idea - it is a basic behaviour of Rails, and you could change it as you wish (but I'm not).
-
+1. You need a lot of conversions between 'internal data' and JSON representations. Just use it as black box.
+2. When you are using Global ID, you are actually dealing with Rails cache, not with real 'objects loaded from database right now'. If you will use this technique for frequently updated content, uou can get a little out-of-date objects. It is not a lack of the idea - it is a basic behaviour of Rails, and you could change it as you wish (but I'm not).
