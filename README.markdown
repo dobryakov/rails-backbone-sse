@@ -15,7 +15,7 @@ Why not websockets? I have a huge experience in websockets, and I want to say - 
 
 Why not React.js? I like React, but it is not a magic. It is a technique. If you understand the technique - you can implement it with any tool. Backbone is an excellent way to build reactive web applications: if you change a data - the view will be changed consequently. With Backbone you have "reactive idea", all benefits of MVC and transport layer (out-of-the-box) to build communication with REST backend. Nice, isn't it?
 
-You might like MVC or not, but you should agree: if I have similar MVC at BE and at FE - it could be very elegant idea to build two-ways communication between.
+You might like MVC or not, but you should agree with me: if I have similar MVC at backend and at frontend - it could be very elegant idea to build two-ways communication between.
 
 How it works?
 -------------
@@ -32,23 +32,26 @@ When you interact with webpage, you change the data in Backbone model. When mode
 
 When comment 'saved' (persisted to database), the backend model dispatch an internal event 'global.comment.update.success' to queue with itself as payload (actually, as 'Global ID' string to prevent storing a lot of JSONs in the queue).
 
-The browser setups a SSE long-polling connection to your backend, and actually with your Stream Controller in this example. The javascript mechanism subscribes to this event by special connector ('EventSource').
+The browser setups an 'SSE' (long-polling) connection to your backend, and actually with your Stream Controller in this example. The javascript mechanism subscribes to this event by special connector ('EventSource').
 
 The Stream controller received this message from the queue, renders the object to json (like in typical controller action) and dispatch it to SSE channel.
 
 We need to setup Server Side Events connector at frontend ('new EventSource') and subscribe to this event. Connector receives the event and publish it to 'Frontend ESB' (message bus) based on Backbone Radio (wreqr).
 
-The CommentsCollection object receives this event and put it into collection. And - as you remember - when the data is changed, the view will be refreshed automagically.
+The CommentsCollection object receives this event and put it into collection (add or merge, actually). And - as you remember - when the data is changed, the view will be refreshed automagically.
 
 Voila!
+
+You can use as many Backbone models or collections to handle many different events as you want, of course. You can use frontend 'ESB' to communicate between your models at frontend only, of course. And several events could be dispatched from backend originally to maintain your frontend application in the consistent state.
 
 Benefits
 --------
 
 1. It's easy.
-2. You have as many instances of StreamController as many people are on your website now (and not more).
-3. Instances will be closed automatically when user has left your website.
-4. In the StreamController you have full controll on the user session ('current_user') through standart tools, without any additional work.
+2. It is an ordinary HTTP (no 'switching protocols'), and it should reconnecting automagically (as described in the docs).
+3. You have as many instances of StreamController as many people are on your website now (and not more).
+4. Instances will be closed automatically when user has left your website.
+5. In the StreamController you have full control on the user session ('current_user') through standart tools, without any additional work.
 
 Caveats
 -------
