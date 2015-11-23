@@ -35,7 +35,7 @@ I suggest you to use 'dotenv-rails' gem.
 The key idea
 ------------
 
-When you interact with webpage, you change the data in Backbone model. When model changed - Backbone sends it to backend and receives an answer. It is a very typical way, but let's ignore this answer and do more.
+When you interact with webpage, you change the data in Backbone model ('Comment' in this example). When model changed - Backbone sends it to the backend API and receives an answer (full JSON representation of the object). It is a very typical way, but let's ignore this answer and do more.
 
 When comment 'saved' (persisted to database), the backend model dispatch an internal event 'global.comment.update.success' to queue with itself as payload (actually, as 'Global ID' string to prevent storing a lot of JSONs in the queue).
 
