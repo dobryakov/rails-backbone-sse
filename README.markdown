@@ -28,11 +28,11 @@ Some setup:
 
 The key idea:
 
-When you interact with webpage, you changed the data in Backbone model. When model changed - Backbone sends it to backend and receives an answer. It is a very typical way, but let's ignore this answer and do more.
+When you interact with webpage, you change the data in Backbone model. When model changed - Backbone sends it to backend and receives an answer. It is a very typical way, but let's ignore this answer and do more.
 
-When comment 'saved' (persisted to database), the model dispatch an event 'global.comment.update.success' to queue with itself as payload (actually, as 'Global ID' string to prevent storing a lot of JSONs in the queue).
+When comment 'saved' (persisted to database), the backend model dispatch an internal event 'global.comment.update.success' to queue with itself as payload (actually, as 'Global ID' string to prevent storing a lot of JSONs in the queue).
 
-The browser setups a SSE long-polling connection to your backend, and actually with your Stream Controller in this example.
+The browser setups a SSE long-polling connection to your backend, and actually with your Stream Controller in this example. The javascript mechanism subscribes to this event by special connector ('EventSource').
 
 The Stream controller received this message from the queue, renders the object to json (like in typical controller action) and dispatch it to SSE channel.
 
