@@ -10,6 +10,8 @@ Why?
 
 I was looking for the good solutions to organize realtime updates to web application in the most elegant way. I wanted to implement this: if you change some data (a model) at frontend - it will be changed at backend by "eventually consistent" principle. And if you change some data at backend - it will be changed at frontend (exactly!) in similar way.
 
+There are a blog post on this topic: [Microservices in a frontend](http://www.dobryakov.net/blog/21/)
+
 Why not ...?
 ------------
 
